@@ -10,19 +10,33 @@ import SwiftUI
 struct ContentView: View {
     // MARK: - PROPERTIES
 
+    @State private var isShowingSettings = false
     var fruits: [Fruit] = fruitsData
 
     // MARK: - BODY
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(fruits.shuffled()) { fruit in
-                    FruitRowView(fruit: fruit)
-                        .padding(.vertical, 4)
+                    NavigationLink(destination: FruitDetailView(fruit: fruit)) {
+                        FruitRowView(fruit: fruit)
+                            .padding(.vertical, 4)
+                    }
                 }
             }
             .navigationTitle("Fruits")
+            .navigationBarItems(
+                trailing:
+                Button {
+                    isShowingSettings = true
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                } //: BUTTON
+                .sheet(isPresented: $isShowingSettings) {
+                    SettingsView()
+                }
+            )
         } //: NAVIGATION
     }
 }
