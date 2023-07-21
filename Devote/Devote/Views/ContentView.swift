@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     // MARK: - PROPERTIES
 
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State var task: String = ""
     @State private var showNewTaskItem = false
 
@@ -48,6 +49,37 @@ struct ContentView: View {
                 VStack {
                     // MARK: - HEADER
 
+                    HStack(spacing: 10) {
+                        // TITLE
+                        Text("Devote")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding(.leading, 4)
+
+                        Spacer()
+
+                        // EDIT BUTTON
+                        EditButton()
+                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                            .padding(.horizontal, 10)
+                            .frame(minWidth: 70, minHeight: 24)
+                            .background(
+                                Capsule().stroke(Color.white, lineWidth: 2)
+                            )
+
+                        // APPERANCE BUTTON
+                        Button {
+                            isDarkMode.toggle()
+                        } label: {
+                            Image(systemName: isDarkMode ? "moon.circle.fill" : "moon.circle")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .font(.system(.title, design: .rounded))
+                        }
+                    } //: HSTACK
+                    .padding()
+                    .foregroundColor(.white)
+
                     Spacer(minLength: 80)
 
                     // MARK: - NEW TASK BUTTON
@@ -84,15 +116,7 @@ struct ContentView: View {
                                 }
 
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Text(item.task ?? "Not working")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-
-                                    Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
+                                ListRowItemView(item: item)
                             }
                         }
                         .onDelete(perform: deleteItems)
@@ -103,16 +127,22 @@ struct ContentView: View {
                     .padding(.vertical, 0)
                     .frame(maxWidth: 640)
                 } //: VSTACK
+                .blur(radius: showNewTaskItem ? 8 : 0, opaque: false)
+                .transition(.move(edge: .bottom))
+                .animation(.easeOut(duration: 0.5), value: showNewTaskItem)
 
                 // MARK: - NEW TASK ITEM
 
                 if showNewTaskItem {
-                    BlankView()
-                        .onTapGesture {
-                            withAnimation {
-                                showNewTaskItem = false
-                            }
+                    BlankView(
+                        backgroundColor: isDarkMode ? Color.black : Color.gray,
+                        backgroundOpacity: isDarkMode ? 0.3 : 0.5
+                    )
+                    .onTapGesture {
+                        withAnimation {
+                            showNewTaskItem = false
                         }
+                    }
                     NewTaskItemView(isShowing: $showNewTaskItem)
                 }
             } //: ZSTACK
@@ -120,13 +150,10 @@ struct ContentView: View {
                 UITableView.appearance().backgroundColor = UIColor.clear
             }
             .navigationBarTitle("Daily Tasks", displayMode: .large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-            } //: TOOLBAR
+            .toolbar(.hidden)
             .background(
                 BackgroundImageView()
+                    .blur(radius: showNewTaskItem ? 8 : 0, opaque: false)
             )
             .background(
                 backgroundGradient.ignoresSafeArea()
