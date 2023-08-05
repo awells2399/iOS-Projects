@@ -22,6 +22,8 @@
 		AFEAADAC2A7C2C560055DBB3 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEAADAB2A7C2C560055DBB3 /* LogoView.swift */; };
 		AFEAADAE2A7C2C860055DBB3 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEAADAD2A7C2C860055DBB3 /* Modifiers.swift */; };
 		AFEAADB02A7C314E0055DBB3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEAADAF2A7C314E0055DBB3 /* Extensions.swift */; };
+		AFEAADB22A7C36700055DBB3 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEAADB12A7C36700055DBB3 /* ReelView.swift */; };
+		AFEAADB42A7C41C50055DBB3 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEAADB32A7C41C50055DBB3 /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		AFEAADAB2A7C2C560055DBB3 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		AFEAADAD2A7C2C860055DBB3 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		AFEAADAF2A7C314E0055DBB3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AFEAADB12A7C36700055DBB3 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
+		AFEAADB32A7C41C50055DBB3 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 			children = (
 				AFEAAD8B2A7C27700055DBB3 /* ContentView.swift */,
 				AFEAADAB2A7C2C560055DBB3 /* LogoView.swift */,
+				AFEAADB12A7C36700055DBB3 /* ReelView.swift */,
+				AFEAADB32A7C41C50055DBB3 /* InfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,11 +210,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEAADB22A7C36700055DBB3 /* ReelView.swift in Sources */,
 				AFEAADB02A7C314E0055DBB3 /* Extensions.swift in Sources */,
 				AFEAADAE2A7C2C860055DBB3 /* Modifiers.swift in Sources */,
 				AFEAAD8C2A7C27700055DBB3 /* ContentView.swift in Sources */,
 				AFEAADAC2A7C2C560055DBB3 /* LogoView.swift in Sources */,
 				AFEAAD8A2A7C27700055DBB3 /* Slot_MachineApp.swift in Sources */,
+				AFEAADB42A7C41C50055DBB3 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
